@@ -18,7 +18,7 @@ func readConf() (string, string) {
 		return "", ""
 	}
 	fmt.Println("getwd: ", getwd)
-	file, _ := os.Open("autoGit/config.json")
+	file, _ := os.Open("config.json")
 	defer file.Close()
 	decoder := json.NewDecoder(file)
 	configuration := Configration{}

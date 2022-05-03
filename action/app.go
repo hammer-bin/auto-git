@@ -1,25 +1,28 @@
 package action
 
 import (
-	"golang-test/test01/example01/autoGit/slack"
+	"auto-git/slack"
 	"os"
 	"os/exec"
 	"syscall"
 )
 
 func GetProperties() string {
-	rst := "D:/workspace_go/golang-test"
+	rst := "D:/workspace_go/auto-git"
 	return rst
 }
 
-func ActionPull() {
+func ProcessPull() {
 	err := os.Chdir(GetProperties())
 	if err != nil {
 		return
 	}
 	result, err := execCommandOutput("git", "pull")
 
-	slack.SendMessageToSlack("실행결과 ::\n" + result)
+	err = slack.SendMessageToSlack("실행결과 ::\n" + result)
+	if err != nil {
+		return
+	}
 
 }
 
